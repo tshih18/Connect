@@ -21,13 +21,13 @@
 		FD6FF9A61F5E505F00B5150A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6FF9A51F5E505F00B5150A /* SignUpViewController.swift */; };
 		FD6FF9A81F5E51D300B5150A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6FF9A71F5E51D300B5150A /* LogInViewController.swift */; };
 		FD86E0391F7832DE004946CF /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E0381F7832DE004946CF /* MessagesViewController.swift */; };
-		FD86E03D1F7833E0004946CF /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E03C1F7833E0004946CF /* MatchViewController.swift */; };
 		FD86E0401F7847F5004946CF /* CustomChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E03E1F7847F5004946CF /* CustomChatCell.swift */; };
 		FD86E0411F7847F5004946CF /* CustomChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD86E03F1F7847F5004946CF /* CustomChatCell.xib */; };
 		FD86E0461F788803004946CF /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E0441F788803004946CF /* CustomMessageCell.swift */; };
 		FD86E0471F788803004946CF /* CustomMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD86E0451F788803004946CF /* CustomMessageCell.xib */; };
 		FD86E0491F788C4B004946CF /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E0481F788C4B004946CF /* Messages.swift */; };
 		FD86E04B1F789B60004946CF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E04A1F789B60004946CF /* ChatViewController.swift */; };
+		FD991C911F80C33D00CE161E /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E03C1F7833E0004946CF /* MatchViewController.swift */; };
 		FDCBF6EE1F64A3A7002083EE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF6ED1F64A3A7002083EE /* EditProfileViewController.swift */; };
 		FDCBF6F01F64A721002083EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF6EF1F64A721002083EE /* User.swift */; };
 		FDE6C7981F6126EE00721937 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6C7971F6126EE00721937 /* ProfileViewController.swift */; };
@@ -352,11 +352,11 @@
 				FD86E0491F788C4B004946CF /* Messages.swift in Sources */,
 				FD86E0401F7847F5004946CF /* CustomChatCell.swift in Sources */,
 				FD6FF9671F5CDF4C00B5150A /* connect_thc1.xcdatamodeld in Sources */,
-				FD86E03D1F7833E0004946CF /* MatchViewController.swift in Sources */,
 				FD86E0391F7832DE004946CF /* MessagesViewController.swift in Sources */,
 				FD6FF9611F5CDF4C00B5150A /* ViewController.swift in Sources */,
 				FD6FF9A61F5E505F00B5150A /* SignUpViewController.swift in Sources */,
 				FD15DCFE1F63614600CBCDC2 /* MateViewController.swift in Sources */,
+				FD991C911F80C33D00CE161E /* MatchViewController.swift in Sources */,
 				FD6FF9A81F5E51D300B5150A /* LogInViewController.swift in Sources */,
 				FDE6C7981F6126EE00721937 /* ProfileViewController.swift in Sources */,
 				FD86E04B1F789B60004946CF /* ChatViewController.swift in Sources */,

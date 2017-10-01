@@ -22,14 +22,24 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     var userDB = FIRDatabase.database().reference().child("Users")
     
+    var fetchLikedDone = false
+    var fetchMatchedDone = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "CustomChatCell", bundle: nil), forCellReuseIdentifier: "customChatCell")
         
         // gets liked and matched users and puts them in users[[],[]]
-        fetchLikedUsers()
         fetchMatchedUsers()
+        fetchLikedUsers()
+        
+        
+        
+        
+        
+        
+        
     }
     
     // gets the users who liked the current user by referencing their node to get updated values of name, profileImageURL
@@ -43,7 +53,20 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         user.profileImageURL = likedUserInfo["ProfileImageURL"] as! String?
                         user.uid = likedUserInfo["Uid"] as! String?
                         
-                        self.users[0].append(user)
+                        
+                        // maybe change how this works
+                        var exists = false
+                        // looped matched[]
+                        for eachUser in self.users[1] {
+                            if eachUser.uid == user.uid {
+                                exists = true
+                                print(user.name!)
+                            }
+                        }
+                        // if not there append to liked[]
+                        if exists == false {
+                            self.users[0].append(user)
+                        }
                         
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -51,7 +74,9 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     }
                 })
             }
+            
         }, withCancel: nil)
+        
     }
 
     // gets the users who matched with the current user by referencing their node to get updated values of name, profileImageURL
@@ -76,6 +101,19 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     
+    func adjustLikedUsers() {
+        // every user in matched
+        print(users[1])
+        for eachUser in users[1] {
+            if users[0].contains(eachUser) {
+                print(eachUser.name)
+                // remove eachUser from users[0]
+                let index = users[0].index(of: eachUser)
+                users[0].remove(at: index!)
+            }
+        }
+    }
+    
     // number of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users[page].count
@@ -84,7 +122,11 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // loading every cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "customChatCell", for: indexPath) as! CustomChatCell
+      
+        
         
         let user = users[page][indexPath.row]
         
