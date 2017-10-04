@@ -28,6 +28,7 @@
 		FD86E0491F788C4B004946CF /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E0481F788C4B004946CF /* Messages.swift */; };
 		FD86E04B1F789B60004946CF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E04A1F789B60004946CF /* ChatViewController.swift */; };
 		FD991C911F80C33D00CE161E /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86E03C1F7833E0004946CF /* MatchViewController.swift */; };
+		FD991C931F81552000CE161E /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991C921F81552000CE161E /* Globals.swift */; };
 		FDCBF6EE1F64A3A7002083EE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF6ED1F64A3A7002083EE /* EditProfileViewController.swift */; };
 		FDCBF6F01F64A721002083EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF6EF1F64A721002083EE /* User.swift */; };
 		FDE6C7981F6126EE00721937 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6C7971F6126EE00721937 /* ProfileViewController.swift */; };
@@ -61,6 +62,7 @@
 		FD86E0451F788803004946CF /* CustomMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMessageCell.xib; path = "connect.thc1/View/Custom Message Cell/CustomMessageCell.xib"; sourceTree = "<group>"; };
 		FD86E0481F788C4B004946CF /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Messages.swift; path = connect.thc1/Model/Messages.swift; sourceTree = "<group>"; };
 		FD86E04A1F789B60004946CF /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
+		FD991C921F81552000CE161E /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = connect.thc1/Model/Globals.swift; sourceTree = "<group>"; };
 		FDCBF6ED1F64A3A7002083EE /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = Controller/EditProfileViewController.swift; sourceTree = "<group>"; };
 		FDCBF6EF1F64A721002083EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = connect.thc1/Model/User.swift; sourceTree = "<group>"; };
 		FDE6C7971F6126EE00721937 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controller/ProfileViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				FD6FF96D1F5CDF4C00B5150A /* Info.plist */,
 				FD6FF9A31F5E4F0900B5150A /* GoogleService-Info.plist */,
 				FD6FF9651F5CDF4C00B5150A /* connect_thc1.xcdatamodeld */,
+				FD991C921F81552000CE161E /* Globals.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -356,6 +359,7 @@
 				FD6FF9611F5CDF4C00B5150A /* ViewController.swift in Sources */,
 				FD6FF9A61F5E505F00B5150A /* SignUpViewController.swift in Sources */,
 				FD15DCFE1F63614600CBCDC2 /* MateViewController.swift in Sources */,
+				FD991C931F81552000CE161E /* Globals.swift in Sources */,
 				FD991C911F80C33D00CE161E /* MatchViewController.swift in Sources */,
 				FD6FF9A81F5E51D300B5150A /* LogInViewController.swift in Sources */,
 				FDE6C7981F6126EE00721937 /* ProfileViewController.swift in Sources */,

@@ -19,28 +19,76 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // [[liked], [matched]]
     var users = [[User](), [User]()]
     var page = 0
+    
+    var keys = [String]()
 
     var userDB = FIRDatabase.database().reference().child("Users")
+    var messageDB = FIRDatabase.database().reference().child("Messages")
     
     var fetchLikedDone = false
     var fetchMatchedDone = false
+    var keysFetched = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "CustomChatCell", bundle: nil), forCellReuseIdentifier: "customChatCell")
+
+        // gets the id's of users with messages
+        getMessageKeys()
         
         // gets liked and matched users and puts them in users[[],[]]
+        
+        if keysFetched == true {
         fetchMatchedUsers()
         fetchLikedUsers()
-        
-        
-        
-        
-        
-        
-        
+        }
     }
+    
+    // find out who the user has messages with - if so dont show them on liked/matches tabs
+    func getMessageKeys() {
+        messageDB.child(currUserID!).observe(.childAdded, with: { (snapshot) in
+            self.keys.append(snapshot.key)
+            print(self.keys)
+            self.keysFetched = true
+        }, withCancel: nil)
+    }       
+    
+    // gets the users who matched with the current user by referencing their node to get updated values of name, profileImageURL
+    func fetchMatchedUsers() {
+        userDB.child(currUserID!).child("Matched").observe(.childAdded, with: { (snapshot) in
+            if let matchedUserId = snapshot.value as? String {
+                self.userDB.child(matchedUserId).observeSingleEvent(of: .value, with: { (snapshotInfo) in
+                    if let matchedUserInfo = snapshotInfo.value as? [String: AnyObject] {
+                        let user = User()
+                        user.name = matchedUserInfo["Name"] as! String?
+                        user.profileImageURL = matchedUserInfo["ProfileImageURL"] as! String?
+                        user.uid = matchedUserInfo["Uid"] as! String?
+                        
+                        var existsInMessage = false
+                        
+                        for key in self.keys {
+                            if user.uid == key {
+                                existsInMessage = true
+                                break
+                            }
+                        }
+                        
+                        if existsInMessage == false {
+                            print(user.name!)
+                            self.users[1].append(user)
+                        }
+                        
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                })
+            }
+        }, withCancel: nil)
+    }
+
     
     // gets the users who liked the current user by referencing their node to get updated values of name, profileImageURL
     func fetchLikedUsers() {
@@ -55,16 +103,28 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         
                         
                         // maybe change how this works
-                        var exists = false
-                        // looped matched[]
+                        var existsInMatched = false
+                        
+                        // looped matched[] to check if user appears there
                         for eachUser in self.users[1] {
-                            if eachUser.uid == user.uid {
-                                exists = true
-                                print(user.name!)
+                            if user.uid == eachUser.uid  {
+                                existsInMatched = true
+                                break
                             }
                         }
-                        // if not there append to liked[]
-                        if exists == false {
+                        
+                        
+                        var existsInMessage = false
+                        for key in self.keys {
+                            if user.uid == key {
+                                existsInMessage = true
+                                break
+                            }
+                        }
+                        
+                        // if not in mathced[] append to liked[]
+                        if existsInMatched == false && existsInMessage == false {
+                            print(user.name!)
                             self.users[0].append(user)
                         }
                         
@@ -79,40 +139,7 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
 
-    // gets the users who matched with the current user by referencing their node to get updated values of name, profileImageURL
-    func fetchMatchedUsers() {
-        userDB.child(currUserID!).child("Matched").observe(.childAdded, with: { (snapshot) in
-            if let matchedUserId = snapshot.value as? String {
-                self.userDB.child(matchedUserId).observeSingleEvent(of: .value, with: { (snapshotInfo) in
-                    if let matchedUserInfo = snapshotInfo.value as? [String: AnyObject] {
-                        let user = User()
-                        user.name = matchedUserInfo["Name"] as! String?
-                        user.profileImageURL = matchedUserInfo["ProfileImageURL"] as! String?
-                        user.uid = matchedUserInfo["Uid"] as! String?
-                        self.users[1].append(user)
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                })
-            }
-        }, withCancel: nil)
-    }
-
     
-    func adjustLikedUsers() {
-        // every user in matched
-        print(users[1])
-        for eachUser in users[1] {
-            if users[0].contains(eachUser) {
-                print(eachUser.name)
-                // remove eachUser from users[0]
-                let index = users[0].index(of: eachUser)
-                users[0].remove(at: index!)
-            }
-        }
-    }
     
     // number of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -122,16 +149,11 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // loading every cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "customChatCell", for: indexPath) as! CustomChatCell
       
-        
-        
         let user = users[page][indexPath.row]
         
         cell.nameTextLabel.text = user.name
-        
         
         if let profileImageUrl = user.profileImageURL {
             let url = URL(string: profileImageUrl)

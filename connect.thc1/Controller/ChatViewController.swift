@@ -45,10 +45,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         retrieveMessages()
 
     }
-    
-    func setupNavBarWithUser() {
-        
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
@@ -89,7 +85,33 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    var sentTime = ""
 
+    // get current time when message is sent
+    func getTime() {
+        let date = Date()
+        let calendar = Calendar.current
+        var hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        var minute = "\(minutes)"
+        
+        
+        // account for single digit minutes
+        if minutes < 10 {
+            minute = "0\(minutes)"
+        }
+        
+        // non-military time
+        if hour > 12 {
+            hour -= 12
+            sentTime = "\(hour):\(minute) PM"
+        }
+        else {
+            sentTime = "\(hour):\(minute) AM"
+        }
+
+    }
+    
     
     //MARK: Send Button Pressed
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -97,21 +119,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         inputTextField.isEnabled = false
         sendButton.isEnabled = false
         
-        // get time
-        let date = Date()
-        let calendar = Calendar.current
-        var hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        var sentTime = ""
-        
-        if hour > 12 {
-            hour -= 12
-            sentTime = "\(hour):\(minutes) PM"
-        }
-        else {
-            sentTime = "\(hour):\(minutes) AM"
-        }
-
+        getTime()
     
         handleSend(sentTime: sentTime)
         
@@ -155,39 +163,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToTabVC" {
             if let tabVC = segue.destination as? UITabBarController{
-                tabVC.selectedIndex = 2
+                tabVC.selectedIndex = 3
             }
         }
     }
     
     //MARK: Back button segue
     @IBAction func backPressed(_ sender: UIBarButtonItem) {
-        //tabBarController?.selectedIndex = 2
         self.performSegue(withIdentifier: "goToTabVC", sender: self)
-        
     }
     
+    // when the enter key is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         // disable send and text field
         inputTextField.isEnabled = false
         sendButton.isEnabled = false
 
-        
-        // get time
-        let date = Date()
-        let calendar = Calendar.current
-        var hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        var sentTime = ""
-        
-        if hour > 12 {
-            hour -= 12
-            sentTime = "\(hour):\(minutes) PM"
-        }
-        else {
-            sentTime = "\(hour):\(minutes) AM"
-        }
+        getTime()
         
         handleSend(sentTime: sentTime)
         
