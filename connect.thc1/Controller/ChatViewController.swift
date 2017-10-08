@@ -36,6 +36,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // register custom table view
         chatTableView.register(UINib(nibName: "CustomChatCell", bundle: nil), forCellReuseIdentifier: "customChatCell")
+        chatTableView.register(UINib(nibName: "CustomRightChatCell", bundle: nil), forCellReuseIdentifier: "customRightChatCell")
 
         chatImage.layer.cornerRadius = 20
         chatImage.layer.masksToBounds = true
@@ -51,20 +52,30 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customChatCell", for: indexPath) as! CustomChatCell
         
         let message = messages[indexPath.row]
+
+        // if own message, use CustomRightChatCell
+        if message.senderID == currUserID {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customRightChatCell", for: indexPath) as! CustomRightChatCell
+            cell.messageLabel.text = message.messageBody
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customChatCell", for: indexPath) as! CustomChatCell
+            cell.messageLabel.text = message.messageBody
+            // reference database to get updated images for sender and receiver
+            userDB.child(message.senderID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    cell.imageLabel.sd_setImage(with: URL(string: dictionary["ProfileImageURL"] as! String), completed: nil)
+                }
+            }, withCancel: nil)
+            
+            return cell
+
+        }
         
-        cell.nameTextLabel.text = message.messageBody
         
-        // reference database to get updated images for sender and receiver
-        userDB.child(message.senderID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                cell.imageLabel.sd_setImage(with: URL(string: dictionary["ProfileImageURL"] as! String), completed: nil)
-            }
-        }, withCancel: nil)
-        
-        return cell
     }
     
     

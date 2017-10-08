@@ -1,27 +1,24 @@
 //
-//  CustomMessageCell.swift
+//  CustomRightChatCell.swift
 //  connect.thc1
 //
-//  Created by Theodore Shih on 9/24/17.
+//  Created by Theodore Shih on 10/3/17.
 //  Copyright © 2017 Theodore Shih. All rights reserved.
 //
 
 import UIKit
 
-class CustomChatCell: UITableViewCell {
+class CustomRightChatCell: UITableViewCell {
 
     @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var imageLabel: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        imageLabel.layer.cornerRadius = 20
-        imageLabel.layer.masksToBounds = true
-        
         messageLabel.layer.cornerRadius = 10
         messageLabel.layer.masksToBounds = true
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -153,7 +153,7 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
       
         let user = users[page][indexPath.row]
         
-        cell.nameTextLabel.text = user.name
+        cell.messageLabel.text = user.name
         
         if let profileImageUrl = user.profileImageURL {
             let url = URL(string: profileImageUrl)

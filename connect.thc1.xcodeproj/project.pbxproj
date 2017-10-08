@@ -32,6 +32,8 @@
 		FDCBF6EE1F64A3A7002083EE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF6ED1F64A3A7002083EE /* EditProfileViewController.swift */; };
 		FDCBF6F01F64A721002083EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCBF6EF1F64A721002083EE /* User.swift */; };
 		FDE6C7981F6126EE00721937 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6C7971F6126EE00721937 /* ProfileViewController.swift */; };
+		FDEA69491F84AABD0078533A /* CustomRightChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEA69471F84AABD0078533A /* CustomRightChatCell.swift */; };
+		FDEA694A1F84AABD0078533A /* CustomRightChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDEA69481F84AABD0078533A /* CustomRightChatCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		FDCBF6ED1F64A3A7002083EE /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = Controller/EditProfileViewController.swift; sourceTree = "<group>"; };
 		FDCBF6EF1F64A721002083EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = connect.thc1/Model/User.swift; sourceTree = "<group>"; };
 		FDE6C7971F6126EE00721937 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controller/ProfileViewController.swift; sourceTree = "<group>"; };
+		FDEA69471F84AABD0078533A /* CustomRightChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRightChatCell.swift; path = "connect.thc1/View/Custom Chat Cell/CustomRightChatCell.swift"; sourceTree = "<group>"; };
+		FDEA69481F84AABD0078533A /* CustomRightChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomRightChatCell.xib; path = "connect.thc1/View/Custom Chat Cell/CustomRightChatCell.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +124,8 @@
 		FD1A86281F5F83B000631FDD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FD86E0431F7887DA004946CF /* Custom Chat Cell */,
-				FD86E0421F7887CD004946CF /* Custom Message Cell */,
+				FD86E0431F7887DA004946CF /* Custom Message Cell */,
+				FD86E0421F7887CD004946CF /* Custom Chat Cell */,
 				FD6FF9621F5CDF4C00B5150A /* Main.storyboard */,
 				FD6FF96A1F5CDF4C00B5150A /* LaunchScreen.storyboard */,
 			);
@@ -173,22 +177,24 @@
 			path = connect.thc1;
 			sourceTree = "<group>";
 		};
-		FD86E0421F7887CD004946CF /* Custom Message Cell */ = {
+		FD86E0421F7887CD004946CF /* Custom Chat Cell */ = {
 			isa = PBXGroup;
 			children = (
 				FD86E03E1F7847F5004946CF /* CustomChatCell.swift */,
 				FD86E03F1F7847F5004946CF /* CustomChatCell.xib */,
+				FDEA69471F84AABD0078533A /* CustomRightChatCell.swift */,
+				FDEA69481F84AABD0078533A /* CustomRightChatCell.xib */,
 			);
-			name = "Custom Message Cell";
+			name = "Custom Chat Cell";
 			sourceTree = "<group>";
 		};
-		FD86E0431F7887DA004946CF /* Custom Chat Cell */ = {
+		FD86E0431F7887DA004946CF /* Custom Message Cell */ = {
 			isa = PBXGroup;
 			children = (
 				FD86E0441F788803004946CF /* CustomMessageCell.swift */,
 				FD86E0451F788803004946CF /* CustomMessageCell.xib */,
 			);
-			name = "Custom Chat Cell";
+			name = "Custom Message Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +268,7 @@
 			files = (
 				FD6FF96C1F5CDF4C00B5150A /* LaunchScreen.storyboard in Resources */,
 				FD6FF9691F5CDF4C00B5150A /* Assets.xcassets in Resources */,
+				FDEA694A1F84AABD0078533A /* CustomRightChatCell.xib in Resources */,
 				FD86E0471F788803004946CF /* CustomMessageCell.xib in Resources */,
 				FD6FF9641F5CDF4C00B5150A /* Main.storyboard in Resources */,
 				FD86E0411F7847F5004946CF /* CustomChatCell.xib in Resources */,
@@ -356,6 +363,7 @@
 				FD86E0401F7847F5004946CF /* CustomChatCell.swift in Sources */,
 				FD6FF9671F5CDF4C00B5150A /* connect_thc1.xcdatamodeld in Sources */,
 				FD86E0391F7832DE004946CF /* MessagesViewController.swift in Sources */,
+				FDEA69491F84AABD0078533A /* CustomRightChatCell.swift in Sources */,
 				FD6FF9611F5CDF4C00B5150A /* ViewController.swift in Sources */,
 				FD6FF9A61F5E505F00B5150A /* SignUpViewController.swift in Sources */,
 				FD15DCFE1F63614600CBCDC2 /* MateViewController.swift in Sources */,
