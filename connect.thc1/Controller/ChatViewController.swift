@@ -38,6 +38,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatTableView.register(UINib(nibName: "CustomChatCell", bundle: nil), forCellReuseIdentifier: "customChatCell")
         chatTableView.register(UINib(nibName: "CustomRightChatCell", bundle: nil), forCellReuseIdentifier: "customRightChatCell")
 
+        chatTableView.separatorStyle = .none
+        
         chatImage.layer.cornerRadius = 20
         chatImage.layer.masksToBounds = true
         
@@ -45,6 +47,21 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chatImage.sd_setImage(with: URL(string: currMessage.receiverImage!), completed: nil)
         retrieveMessages()
 
+    }
+    
+    // dynamically set height for each chat message
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat = 80
+        if let text = messages[indexPath.row].messageBody {
+            height = estimateFrameForText(text: text).height + 32
+        }
+        return height
+    }
+    
+    func estimateFrameForText(text: String) -> CGRect {
+        let size = CGSize(width: 260, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,15 +71,21 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let message = messages[indexPath.row]
+        
+        // modify width - need reference to width anchor
 
         // if own message, use CustomRightChatCell
         if message.senderID == currUserID {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customRightChatCell", for: indexPath) as! CustomRightChatCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.bubbleViewWidthAnchor?.constant = estimateFrameForText(text: message.messageBody!).width + 30
             cell.messageLabel.text = message.messageBody
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customChatCell", for: indexPath) as! CustomChatCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.bubbleViewWidthAnchor?.constant = estimateFrameForText(text: message.messageBody!).width + 30
             cell.messageLabel.text = message.messageBody
             // reference database to get updated images for sender and receiver
             userDB.child(message.senderID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -146,7 +169,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let messageDictionary = ["Sender ID": currUserID!, "Sender Name": currUser.name!, "Sender Image": currMessage.senderImage!, "Receiver ID": currMessage.receiverID!, "Receiver Name": currMessage.receiverName!, "Message Body": inputTextField.text!, "Time": sentTime] as [String : Any]
         
         // set value in current user's node
-        messagesDB.child(currUserID!).child(currMessage.receiverID!).childByAutoId().setValue(messageDictionary) { (error, ref) in
+        messagesDB.child(currUserID!).child(currMessage.receiverID!).childByAutoId().updateChildValues(messageDictionary) { (error, ref) in // was setValue
             if error != nil {
                 print(error!)
                 return
@@ -157,7 +180,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // set value in receiver's node
-        messagesDB.child(currMessage.receiverID!).child(currUserID!).childByAutoId().setValue(messageDictionary) { (error, ref) in
+        messagesDB.child(currMessage.receiverID!).child(currUserID!).childByAutoId().updateChildValues(messageDictionary) { (error, ref) in // was setValue
             if error != nil {
                 print(error!)
                 return

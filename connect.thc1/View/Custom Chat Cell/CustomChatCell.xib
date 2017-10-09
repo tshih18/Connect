@@ -15,27 +15,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-9y-dwP">
-                        <rect key="frame" x="56" y="11" width="246" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4wm-In-Eul">
-                        <rect key="frame" x="8" y="1" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4wm-In-Eul">
+                        <rect key="frame" x="4" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="fRs-fD-hbY"/>
+                            <constraint firstAttribute="height" constant="40" id="u3j-Ny-M7l"/>
+                        </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Gd-N4-Bvy">
+                        <rect key="frame" x="48" y="4" width="260" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-9y-dwP">
+                                <rect key="frame" x="12" y="8" width="240" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zmq-9y-dwP" secondAttribute="trailing" constant="8" id="7uT-MX-Dpy"/>
+                            <constraint firstItem="zmq-9y-dwP" firstAttribute="leading" secondItem="7Gd-N4-Bvy" secondAttribute="leading" constant="12" id="AQk-z0-VzG"/>
+                            <constraint firstItem="zmq-9y-dwP" firstAttribute="top" secondItem="7Gd-N4-Bvy" secondAttribute="top" constant="8" id="GbL-18-iff"/>
+                            <constraint firstAttribute="bottom" secondItem="zmq-9y-dwP" secondAttribute="bottom" constant="8" id="cQq-So-FVx"/>
+                            <constraint firstAttribute="width" constant="260" id="di3-Fe-2z2"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="7Gd-N4-Bvy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="34j-N5-VjZ"/>
+                    <constraint firstAttribute="bottom" secondItem="4wm-In-Eul" secondAttribute="bottom" constant="1" id="5Jw-Oc-K80"/>
+                    <constraint firstItem="7Gd-N4-Bvy" firstAttribute="leading" secondItem="4wm-In-Eul" secondAttribute="trailing" constant="4" id="ECf-Nt-MDD"/>
+                    <constraint firstItem="4wm-In-Eul" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="FJO-hc-pPO"/>
+                    <constraint firstAttribute="bottom" secondItem="7Gd-N4-Bvy" secondAttribute="bottom" constant="4" id="TDm-Pq-yZ2"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bubbleView" destination="7Gd-N4-Bvy" id="8Yu-BW-u1v"/>
                 <outlet property="imageLabel" destination="4wm-In-Eul" id="abj-C1-Pev"/>
                 <outlet property="messageLabel" destination="zmq-9y-dwP" id="eNq-fC-dYY"/>
             </connections>
+            <point key="canvasLocation" x="-24" y="12"/>
         </tableViewCell>
     </objects>
 </document>

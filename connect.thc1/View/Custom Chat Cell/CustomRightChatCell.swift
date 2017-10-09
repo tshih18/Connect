@@ -9,15 +9,22 @@
 import UIKit
 
 class CustomRightChatCell: UITableViewCell {
-
+    
+    @IBOutlet var bubbleView: UIView!
     @IBOutlet var messageLabel: UILabel!
+    
+    var bubbleViewWidthAnchor: NSLayoutConstraint?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        messageLabel.layer.cornerRadius = 10
-        messageLabel.layer.masksToBounds = true
+        bubbleView.translatesAutoresizingMaskIntoConstraints = false
+        bubbleViewWidthAnchor = bubbleView.widthAnchor.constraint(equalToConstant: 260)
+        bubbleViewWidthAnchor?.isActive = true
+        
+        bubbleView.layer.cornerRadius = 16
+        bubbleView.layer.masksToBounds = true
 
     }
 

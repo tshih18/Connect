@@ -27,7 +27,7 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var fetchLikedDone = false
     var fetchMatchedDone = false
-    var keysFetched = false
+    //var keysFetched = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +39,10 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // gets liked and matched users and puts them in users[[],[]]
         
-        if keysFetched == true {
+        //if keysFetched == true {
         fetchMatchedUsers()
         fetchLikedUsers()
-        }
+        //}
     }
     
     // find out who the user has messages with - if so dont show them on liked/matches tabs
@@ -50,7 +50,7 @@ class MatchViewController: UIViewController, UITableViewDelegate, UITableViewDat
         messageDB.child(currUserID!).observe(.childAdded, with: { (snapshot) in
             self.keys.append(snapshot.key)
             print(self.keys)
-            self.keysFetched = true
+            //self.keysFetched = true
         }, withCancel: nil)
     }       
     

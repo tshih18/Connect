@@ -15,20 +15,37 @@
             <rect key="frame" x="0.0" y="0.0" width="364" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="364" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww6-9W-E4b">
-                        <rect key="frame" x="110" y="8" width="246" height="27"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRu-4a-n91">
+                        <rect key="frame" x="100" y="4" width="260" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww6-9W-E4b">
+                                <rect key="frame" x="12" y="8" width="240" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Ww6-9W-E4b" secondAttribute="bottom" constant="8" id="1XA-Pb-TMD"/>
+                            <constraint firstItem="Ww6-9W-E4b" firstAttribute="top" secondItem="vRu-4a-n91" secondAttribute="top" constant="8" id="Dyc-mF-GKZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Ww6-9W-E4b" secondAttribute="trailing" constant="8" id="KqR-Sn-rIz"/>
+                            <constraint firstItem="Ww6-9W-E4b" firstAttribute="leading" secondItem="vRu-4a-n91" secondAttribute="leading" constant="12" id="OaV-Oy-Ioo"/>
+                            <constraint firstAttribute="width" constant="260" id="eqg-o6-utM"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="vRu-4a-n91" secondAttribute="trailing" constant="4" id="5NP-Wz-3Ta"/>
+                    <constraint firstAttribute="bottom" secondItem="vRu-4a-n91" secondAttribute="bottom" constant="4" id="gR4-AV-P4F"/>
+                    <constraint firstItem="vRu-4a-n91" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="rwo-t1-JxR"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bubbleView" destination="vRu-4a-n91" id="Tde-H8-FIg"/>
                 <outlet property="messageLabel" destination="Ww6-9W-E4b" id="RkP-kQ-f1N"/>
             </connections>
             <point key="canvasLocation" x="47" y="52"/>

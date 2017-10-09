@@ -31,8 +31,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func observeMessages() {
-        
-        
         /*messageDB.child(currUserID!).observe(.value, with: { (snapshot) in
   
             if let dictionary = snapshot.value as? [String: AnyObject] {
@@ -51,7 +49,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
                 
             }
         })*/
-        
+ 
         messageDB.child(currUserID!).observe(.childAdded, with: { (snapshot) in
             print(snapshot)
             
@@ -70,7 +68,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
                 // only save the most recent message of every person
                 let message = Messages()
 
-                
                 message.messageBody = dictionary[firstKey]?["Message Body"] as! String?
                 message.senderID = dictionary[firstKey]?["Sender ID"] as! String?
                 message.timeStamp = dictionary[firstKey]?["Time"] as! String?
